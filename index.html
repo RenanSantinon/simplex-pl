@@ -9,31 +9,36 @@
       />
     <link href="css/materialize.css" type="text/css" rel="stylesheet" />
     <link href="css/main.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="toucan-icon.png" type="image/x-icon">
+
   </head>
 
   <body>
-    <div class="big-card-parent">
-      <div class="big-card-child card" style="margin: 0">
+    <div class="big-card-parent" style="background-image: url(numeros2.jpg); height: 100%;">
+      <div class="big-card-child card" style="margin: 0; border-radius: 80px;">
         <div class="card-content main-content">
           <br />
           <div>
             <div class="row" style="font-weight: bold">
               <div class="col s6 m8">
-                <span class="card-title" style="font-weight: bold;
-                  text-decoration: 2px underline black;">Simplex Fatec Americana
+                <span class="card-title hover" style="font-weight: bold;
+                  text-decoration: 2px underline black; width: 63%;">Simplex Fatec Americana
                   - Disciplina de Programação
                   linear</span>
               </div>
               <div class="card col s6 m3">
-                <p style="text-decoration: 2px underline black">Integrantes:</p>
+                <p style="text-decoration: 2px underline black" class="hover">Integrantes:</p>
                 <br />
                 <p>Renan Luis Santinon</p>
                 <p>Paulo Cesar Lousada Filho</p>
                 <p>Matheus Epifanio de Souza Magalhães</p>
                 <p>Daniel de Souza Filho</p>
-
               </div>
+              <!-- <div id="tucano1">
+                <img src="ByTucans-depositphotos-bgremover.png">
+              </div> -->
             </div>
+
           </div>
           <br />
           <br />
@@ -41,13 +46,14 @@
             <div class="col s12 m3">
               <select id="simplexType">
                 <option value="max">Maximizar</option>
+                <option value="min">Minimizar</option>
               </select>
               <br />
               <input id="simplexType" style="display: none" />
               <div class="input-field number-input valign-wrapper">
                 <a
                   href="javascript:add(-1, 'variable')"
-                  class="btn-flat white orange-text"><i class="material-icons">remove</i></a>
+                  class="btn-flat white blue-text"><i class="material-icons">remove</i></a>
                 <label for="numberOfVariables">Quantidade de variáveis</label>
                 <input
                   id="numberOfVariables"
@@ -59,12 +65,12 @@
                   />
                 <a
                   href="javascript:add(1, 'variable')"
-                  class="btn-flat white orange-text"><i class="material-icons">add</i></a>
+                  class="btn-flat white blue-text"><i class="material-icons">add</i></a>
               </div>
               <div class="input-field number-input valign-wrapper">
                 <a
                   href="javascript:add(-1, 'constraint')"
-                  class="btn-flat white orange-text"><i class="material-icons">remove</i></a>
+                  class="btn-flat white blue-text"><i class="material-icons">remove</i></a>
                 <label for="numberOfConstraints">Quantidade de restrições</label>
                 <input
                   id="numberOfConstraints"
@@ -76,7 +82,7 @@
                   />
                 <a
                   href="javascript:add(1, 'constraint')"
-                  class="btn-flat white orange-text"><i class="material-icons">add</i></a>
+                  class="btn-flat white blue-text"><i class="material-icons">add</i></a>
               </div>
               <div id="actions" class="center">
                 <a
@@ -86,7 +92,7 @@
                 <a id="clear" class="btn blue white-text orange-text">Limpar campos</a>
               </div>
             </div>
-            <div class="col s12 m9">
+            <div class="col s12 m6">
               <br />
               <p>Função objetiva(FO)</p>
               <div id="objectiveFunction" class="flex-spacing"></div>
@@ -96,6 +102,14 @@
               <br />
               <div id=""></div>
             </div>
+
+            <div class="col s6 m3">
+              <figure id="tucano">
+              <a href=""><img src="ByTucans-depositphotos-bgremover.png"></a>
+              </figure>               
+            </div>
+
+
           </div>
         </div>
       </div>

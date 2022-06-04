@@ -4,7 +4,6 @@ if (!M) {
     throw new Error("materialize.js não está linkado");
 }
 
-// Operates the simplex table form
 var SimplexTable = {}
 
 SimplexTable.operatorOptions = $('<select>').html([
@@ -12,7 +11,6 @@ SimplexTable.operatorOptions = $('<select>').html([
     $('<option>').attr('value', '=').text('='),
     $('<option>').attr('value', '>=').text('>=')]);
 
-// Builds the nth input of the objective function
 SimplexTable.makeObjFunInput = function (i) {
     return $('<div>')
         .addClass('valign-wrapper')
@@ -21,12 +19,12 @@ SimplexTable.makeObjFunInput = function (i) {
             $('<input>')
                 .attr('id', `objF-${i}`)
                 .attr('type', 'number')
+                .attr('min',  '0')
                 .attr('value', '0'),
             $('<p>').html(`X<sub>${i+1}</sub>`)
         ]);
 }
 
-// Builds the constraint input of constraint i of variable j
 SimplexTable.makeConstraintInput = function (i, j) {
     return $('<div>')
         .addClass('valign-wrapper')
@@ -35,12 +33,12 @@ SimplexTable.makeConstraintInput = function (i, j) {
             $('<input>')
                 .attr('id', `c-${i}-${j}`)
                 .attr('type', 'number')
+                .attr('min',  '0')
                 .attr('value', '0'),
             $('<p>').html(`X<sub>${j+1}</sub>`)
         ]);
 }
 
-// Builds an entire constraint with operator options and b
 SimplexTable.makeConstraint = function (i, nVar) {
     let result = Array(nVar + 2);
 
@@ -55,7 +53,6 @@ SimplexTable.makeConstraint = function (i, nVar) {
     return $(`<div>`).addClass('flex-spacing').addClass('constraint').html(result);
 }
 
-// Changes the amount of columns
 SimplexTable.changeVariables = function () {
     let numberOfVariables = $('#numberOfVariables').val() * 1;
     let numberOfConstraints = $('#numberOfConstraints').val() * 1;
@@ -63,7 +60,6 @@ SimplexTable.changeVariables = function () {
     let $objectiveFunction = $('#objectiveFunction');
     let objectiveFunctionChildren = $objectiveFunction.children();
 
-    // Change objective function
     if (objectiveFunctionChildren.length > numberOfVariables) {
         for (let i = 0; i < objectiveFunctionChildren.length - numberOfVariables; i++) {
             objectiveFunctionChildren.eq(objectiveFunctionChildren.length - 1).remove();
@@ -74,7 +70,6 @@ SimplexTable.changeVariables = function () {
         }
     }
 
-    // Change each constraint
     let $constraints = $('#constraints .constraint');
 
     let totalVariables = $constraints.eq(0).children().length - 2;
@@ -87,7 +82,7 @@ SimplexTable.changeVariables = function () {
             }
         });
     } else {
-        // For each constraint, add input variables
+
         $constraints.each(function (i) {
             for (let j = 0; j < (numberOfVariables - totalVariables); j++) {
                 let lastInput = $(this).children().eq($(this).children().length - 3);
@@ -100,7 +95,6 @@ SimplexTable.changeVariables = function () {
     $('select').formSelect();
 }
 
-// Changes the amount of rows
 SimplexTable.changeConstraints = function () {
     let numberOfVariables = $('#numberOfVariables').val() * 1;
     let numberOfConstraints = $('#numberOfConstraints').val() * 1;
@@ -140,11 +134,7 @@ SimplexTable.getSimplexTable = function () {
         return
     }
 
-    /**
-     * [n x m] matrix where
-     * n = number of constraints
-     * m = number of variables
-     */
+
     let constraints = Array(numberOfConstraints).fill(undefined);
 
     for (let i = 0; i < constraints.length; i++) {
@@ -261,12 +251,3 @@ SimplexTable.saveTable = function () {
     window.prompt("Save Simplex Table", JSON.stringify(SimplexTable.getSimplexTable()));
 }
 
-// EXAMPLES
-// {"type":"max","objectiveFunction":[1,1],"constraints":[[2,1],[1,2]],"operators":["<=","<="],"b":[4,3],"columns":["X<sub>0</sub>","X<sub>1</sub>"]}
-// {"type":"max","objectiveFunction":[4,1],"constraints":[[2,3],[2,1]],"operators":["<=","<="],"b":[12,8],"columns":["X<sub>0</sub>","X<sub>1</sub>"]}
-// {"type":"max","objectiveFunction":[3,4],"constraints":[[1,1],[2,1]],"operators":["<=","<="],"b":[4,5],"columns":["X<sub>0</sub>","X<sub>1</sub>"]}
-// {"type":"max","objectiveFunction":[4,6],"constraints":[[-1,1],[1,1],[2,5]],"operators":["<=","<=","<="],"b":[11,27,90],"columns":["X<sub>0</sub>","X<sub>1</sub>"]}
-// {"type":"max","objectiveFunction":[1,1,1],"constraints":[[2,1,-1],[1,1,2],[2,1,3]],"operators":["<=",">=","="],"b":[10,20,60],"columns":["X<sub>0</sub>","X<sub>1</sub>","X<sub>2</sub>"]}
-
-// Currently not working
-// {"type":"min","objectiveFunction":[3,2],"constraints":[[2,1],[1,5]],"operators":[">=",">="],"b":[10,15],"columns":["X<sub>0</sub>","X<sub>1</sub>"]}

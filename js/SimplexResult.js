@@ -26,7 +26,7 @@ SimplexResult.showInitialLinearProgram = function (data) {
 
     let objFunction = $('<li>').addClass('collection-item').html([
         
-        data.type === 'max' ? 'FO Max(z)  = ' : 'Minimize Z = ',
+        data.type === 'max' ? 'FO Max(z)  = ' : 'Fo Min(z) = ',
         data.objectiveFunction.map((val, i) => `${val} * X<sub>${i+1}</sub>`).join(' + ')
     ]);
 
