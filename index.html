@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simplex | byTucans</title>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+      />
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" />
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="big-card-parent">
+      <div class="big-card-child card" style="margin: 0">
+        <div class="card-content main-content">
+          <br />
+          <div>
+            <div class="row" style="font-weight: bold">
+              <div class="col s6 m8">
+                <span class="card-title" style="font-weight: bold;
+                  text-decoration: 2px underline black;">Simplex Fatec Americana
+                  - Disciplina de Programação
+                  linear</span>
+              </div>
+              <div class="card col s6 m3">
+                <p style="text-decoration: 2px underline black">Integrantes:</p>
+                <br />
+                <p>Renan Luis Santinon</p>
+                <p>Paulo Cesar Lousada Filho</p>
+                <p>Matheus Epifanio de Souza Magalhães</p>
+                <p>Daniel de Souza Filho</p>
+
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div class="row">
+            <div class="col s12 m3">
+              <select id="simplexType">
+                <option value="max">Maximizar</option>
+              </select>
+              <br />
+              <input id="simplexType" style="display: none" />
+              <div class="input-field number-input valign-wrapper">
+                <a
+                  href="javascript:add(-1, 'variable')"
+                  class="btn-flat white orange-text"><i class="material-icons">remove</i></a>
+                <label for="numberOfVariables">Quantidade de variáveis</label>
+                <input
+                  id="numberOfVariables"
+                  type="number"
+                  min="1"
+                  value="1"
+                  readonly
+                  style="text-align: center"
+                  />
+                <a
+                  href="javascript:add(1, 'variable')"
+                  class="btn-flat white orange-text"><i class="material-icons">add</i></a>
+              </div>
+              <div class="input-field number-input valign-wrapper">
+                <a
+                  href="javascript:add(-1, 'constraint')"
+                  class="btn-flat white orange-text"><i class="material-icons">remove</i></a>
+                <label for="numberOfConstraints">Quantidade de restrições</label>
+                <input
+                  id="numberOfConstraints"
+                  type="number"
+                  min="1"
+                  value="1"
+                  readonly
+                  style="text-align: center"
+                  />
+                <a
+                  href="javascript:add(1, 'constraint')"
+                  class="btn-flat white orange-text"><i class="material-icons">add</i></a>
+              </div>
+              <div id="actions" class="center">
+                <a
+                  id="calculate"
+                  class="btn blue white-text modal-trigger"
+                  href="#resultModal">Calcular</a>
+                <a id="clear" class="btn blue white-text orange-text">Limpar campos</a>
+              </div>
+            </div>
+            <div class="col s12 m9">
+              <br />
+              <p>Função objetiva(FO)</p>
+              <div id="objectiveFunction" class="flex-spacing"></div>
+              <br />
+              <p>Restrições</p>
+              <div id="constraints"></div>
+              <br />
+              <div id=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultModal" class="modal">
+      <div class="modal-content"></div>
+    </div>
+
+    <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="js/materialize.js" type="text/javascript"></script>
+    <script src="js/SimplexTable.js" type="text/javascript"></script>
+    <script src="js/Simplex.js" type="text/javascript"></script>
+    <script src="js/SimplexResult.js" type="text/javascript"></script>
+    <script src="js/SimplexUtil.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+  </body>
+</html>
